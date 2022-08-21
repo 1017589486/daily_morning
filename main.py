@@ -18,19 +18,13 @@ user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
 def get_date():
-  return today
+  return today.days
 
-def get_weather_low():
+def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
   weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['low'])
-
-def get_weather_high():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
-  res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['high'])
+  return weather['weather'],math.floor(weather['low']),math.floor(weather['high'])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -40,7 +34,7 @@ def get_birthday():
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
-  return (next - today).days
+  return (next - today).days + 29
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
@@ -55,7 +49,7 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea, temperature = get_weather()
-data = {"date":{"value":get_date()},"weather":{"value":wea},"temperature_high":{"value":get_weather_high()},"temperature_low":{"value":get_weather_low()},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+wea, temperature_high,temperature_low = get_weather()
+data = {"date":{"value":get_date()},"weather":{"value":wea},"temperature_high":{"value":temperature_high},"temperature_low":{"value":temperature_low},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
