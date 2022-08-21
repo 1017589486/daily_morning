@@ -18,7 +18,9 @@ user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
 def get_date():
-  return today.days
+   t = date.today()  #date类型
+ dt = datetime.strptime(str(t),'%Y-%m-%d') #date转str再转datetime
+ return dt
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
