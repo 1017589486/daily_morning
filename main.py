@@ -18,7 +18,7 @@ user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
 def get_date():
- dt = datetime.strptime(str(today),'%Y-%m-%d') #date转str再转datetime
+ dt = datetime.strptime(today,'%Y-%m-%d') #date转str再转datetime
  return dt
 
 def get_weather():
