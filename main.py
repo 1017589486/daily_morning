@@ -16,7 +16,7 @@ app_secret = os.environ["APP_SECRET"]
 
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
-lihexu = os.environ["LIHEXU"]
+
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
@@ -51,5 +51,6 @@ wea, temperature_high,temperature_low,d,city = get_weather()
 data = {"date":{"value":d,"color":get_random_color()},"city":{"value":city,"color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature_high":{"value":temperature_high, "color":get_random_color()},"temperature_low":{"value":temperature_low, "color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(),"color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
-res1 = wm.send_template(user_id, lihexu, data)
-print(res1)
+template_id = os.environ["LIHEXU"]
+res = wm.send_template(user_id, template_id, data)
+print(res)
