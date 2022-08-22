@@ -31,3 +31,4 @@ jobs:
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
       LIHEXU: ${{ secrets.LIHEXU }}
+      WANGXIAOQIAN: ${{ secrets.WANGXIAOQIAN }}
