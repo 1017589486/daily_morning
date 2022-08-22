@@ -54,3 +54,6 @@ print(res)
 lihexu = os.environ["LIHEXU"]
 res = wm.send_template(lihexu, template_id, data)
 print(res)
+wangxiaoqian = os.environ["WANGXIAOQIAN"]
+res = wm.send_template(wangxiaoqian, template_id, data)
+print(res)
