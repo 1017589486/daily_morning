@@ -30,4 +30,4 @@ jobs:
       START_DATE: ${{ secrets.START_DATE }}
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
-      LIHEXU:${{ secrets.LIHEXU}}
+      LIHEXU: ${{ secrets.LIHEXU }}
